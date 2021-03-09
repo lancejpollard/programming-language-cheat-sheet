@@ -24,7 +24,7 @@ stack ghc -- -o example example.hs && ./example
 
 ```hs
 main = putStrLn "hello world"
-```ow
+```
 
 ## Reading from a File
 
