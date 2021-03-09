@@ -257,6 +257,7 @@ infixl 1 >>
 
 ```hs
 ($) :: (a -> b) -> a -> b
+f $ x = f x
 infixr 0 $
 ```
 
@@ -303,6 +304,54 @@ thenIO (IO m) k = IO (\ s -> case m s of (# new_s, _ #) -> unIO k new_s)
 
 ## What does `infixl` do?
 
+## What does `{-# INLINE mempty #-}` do?
+
+## What does `{-# MINIMAL pure, ((<*>) | liftA2) #-}` do?
+
+## What does `{-# INLINABLE liftA #-}` do?
+
+## What does `{-# SPECIALISE liftA :: (a1->r) -> IO a1 -> IO r #-}` do?
+
+## What does `{-# RULES` do?
+
+## What does the `#` do?
+
+```hs
+unsafeChr (I# i#) = C# (chr# i#)
+```
+
+## What does `forall` do?
+
+## What does `@` do?
+
+```hs
+bufferRemove i buf@Buffer{ bufL=r } = bufferAdjustL (r+i) buf
+```
+
+## Interface with C
+
+```hs
+foreign import ccall unsafe "getMonotonicNSec"
+  getMonotonicTimeNSec :: IO Word64
+```
+
+## What does the backslash mean in Haskell?
+
+It is the lambda form of a function.
+
+```hs
+fib = \n -> case n of
+  0 -> 1
+  1 -> 1
+  n -> fib (n - 1) + fib (n - 2)
+```
+
+```hs
+fib 0 = 1
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)
+```
+
 ## Sources
 
 - https://github.com/serodriguez68/haskell-cheat-sheet
@@ -312,3 +361,4 @@ thenIO (IO m) k = IO (\ s -> case m s of (# new_s, _ #) -> unIO k new_s)
 - https://stackoverflow.com/questions/1817865/haskell-and-differences
 - https://stackoverflow.com/questions/11567540/how-to-create-sub-type-class-of-type-class-in-haskell
 - https://wiki.haskell.org/Keywords
+- https://github.com/ghc/ghc/tree/master/libraries/base
